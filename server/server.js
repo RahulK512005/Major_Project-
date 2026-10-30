@@ -24,7 +24,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5050;
-const HOST = process.env.HOST || '127.0.0.1';
+const HOST = process.env.HOST || '0.0.0.0';
 const ADMIN_TOKEN = process.env.ADMIN_TOKEN || '';
 const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || `http://localhost:${process.env.VITE_PORT || 3045},http://127.0.0.1:${process.env.VITE_PORT || 3045}`)
   .split(',')
