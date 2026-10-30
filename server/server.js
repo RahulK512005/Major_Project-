@@ -34,7 +34,11 @@ const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || `http://localhost:${process
 // Same-origin requests (via the Vite proxy) carry no Origin header and are always allowed
 app.use(cors({
   origin(origin, callback) {
-    callback(null, !origin || ALLOWED_ORIGINS.includes(origin));
+    const isAllowed = !origin ||
+                      ALLOWED_ORIGINS.includes('*') ||
+                      ALLOWED_ORIGINS.includes(origin) ||
+                      origin.endsWith('.vercel.app');
+    callback(null, isAllowed);
   }
 }));
 app.use(express.json({ limit: '10mb' }));
